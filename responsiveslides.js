@@ -6,6 +6,7 @@
     var settings = $.extend({
       "auto": true, // Boolean: Animate automatically
       "pagination": false, // Boolean: Show pagination
+      "paginationPos": "bottom", // String: define the position in source code, available options: "top" or "bottom"
       "nav": false, // Boolean: Show navigation
       "prevText": "Previous", // String: Text for the "previous" button
       "nextText": "Next", // String: Text for the "next" button
@@ -98,7 +99,8 @@
           var $tabs = $pagination.find("a");
 
           // Inject pagination
-          $this.after($pagination);
+          if(settings.paginationPos === "top") { $this.before($pagination); }
+          else { $this.after($pagination); }
         }
 
         // Select active tab
@@ -183,10 +185,10 @@
         // Build navigation
         var navMarkup =
           "<a href=\"#\" title=\"" + settings.prevText + "\" class=\"" + namespaceIndex + "_nav prev\">" +
-            settings.prevText +
+           settings.prevText +
           "</a>" +
           "<a href=\"#\" title=\"" + settings.nextText + "\" class=\"" + namespaceIndex + "_nav next\">" +
-            settings.nextText +
+           settings.nextText +
           "</a>";
 
         // Inject navigation
